@@ -58,7 +58,7 @@ if file:
     from transformers import Wav2Vec2ForCTC, Wav2Vec2CTCTokenizer
     #nltk.download('punkt')
     
-    model_path = "C:/Users/GovindaBharadwajKoll/w2v_model_new/"
+    model_path = "./"
      
     tokenizer = Wav2Vec2CTCTokenizer.from_pretrained(model_path)
     model = Wav2Vec2ForCTC.from_pretrained(model_path)
@@ -90,58 +90,58 @@ if file:
          #st.header("Video Thumbnails")
          t1,t2,t3,t4,t5,t6 = st.columns(6)
     with t1:
-         h1 = Image.open('eyelift.jpg')
+         h1 = Image.open('./huda_data/eyelift.jpg')
          h1_n = h1.resize((200, 150))
         
          st.image(h1_n)#, use_column_width='always', caption='t1')
     with t2:
-         h2 = Image.open('blush_draping.jpg')
+         h2 = Image.open('./huda_data/blush_draping.jpg')
          h2_n = h2.resize((200, 150))
 
          st.image(h2_n)#, use_column_width='always',caption='t2')
     with t3:
-         h3 = Image.open('method4.jpg')
+         h3 = Image.open('./huda_data/method4.jpg')
          h3_n = h3.resize((200, 150))
 
          st.image(h3_n)#, use_column_width='always',caption='t3')     
     with t4:
-         h4 = Image.open('mascara6.jpg')
+         h4 = Image.open('./huda_data/mascara6.jpg')
          h4_n = h4.resize((200, 150))
 
          st.image(h4_n)#, use_column_width='always',caption='t4') 
     with t5:
-         h5 = Image.open('concealer9.jpg')
+         h5 = Image.open('./huda_data/concealer9.jpg')
          h5_n = h5.resize((200, 150))
 
          st.image(h5_n)#, use_column_width='always',caption='t5')
     with t6:
-         st.write("....")
+         st.write("   ....")
     
     with sample_text:
          #st.header("Sample Text")
          s1,s2,s3,s4,s5,s6 = st.columns(6)
     with s1:
-         with open('v1.txt') as f:
+         with open('./huda_data/v1.txt') as f:
               text = f.read()
               st.write(text)  
     with s2:
-         with open('v2.txt') as f:
+         with open('./huda_data/v2.txt') as f:
               text = f.read()
               st.write(text)         
     with s3:
-         with open('v3.txt') as f:
+         with open('./huda_data/v3.txt') as f:
               text = f.read()
               st.write(text)
     with s4:
-         with open('v4.txt') as f:
+         with open('./huda_data/v4.txt') as f:
               text = f.read()
               st.write(text)
     with s5:
-         with open('v5.txt') as f:
+         with open('./huda_data/v5.txt') as f:
               text = f.read()
               st.write(text)
     with s6:
-         st.write("....")
+         st.write("   ....")
 #--------------------------------------------------------------------------------
     topic_container = st.container()
     import pickle
@@ -207,7 +207,7 @@ if file:
         new_text = " ".join([tok for tok in tokenized_list if tok not in emoji_dict])
         commentsList_URLEmoji.append(new_text)
     
-    topic_model = BERTopic.load("my_model")
+    topic_model = BERTopic.load("topic_model")
     #fig = topic_model.visualize_barchart(top_n_topics=10, n_words=10, height=400)
     #--------------------------------------------------------------------------------
     
