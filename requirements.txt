@@ -6,4 +6,6 @@ scikit_learn
 spacy
 streamlit
 ffmpeg
+librosa
+soundfile
 transformers
