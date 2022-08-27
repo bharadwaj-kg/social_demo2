@@ -54,33 +54,33 @@ if file:
     #import librosa
     #import torch
     #import soundfile as sf
-    from transformers import pipeline
-    from transformers import Wav2Vec2ForCTC, Wav2Vec2CTCTokenizer
-    #nltk.download('punkt')
+#     from transformers import pipeline
+#     from transformers import Wav2Vec2ForCTC, Wav2Vec2CTCTokenizer
+#     #nltk.download('punkt')
     
-    model_path = "./"
+#     model_path = "./"
      
-    tokenizer = Wav2Vec2CTCTokenizer.from_pretrained(model_path)
-    model = Wav2Vec2ForCTC.from_pretrained(model_path)
+#     tokenizer = Wav2Vec2CTCTokenizer.from_pretrained(model_path)
+#     model = Wav2Vec2ForCTC.from_pretrained(model_path)
     
-    pipe = pipeline(task = "automatic-speech-recognition", model= model, tokenizer = tokenizer,
-               feature_extractor = model_path)
+#     pipe = pipeline(task = "automatic-speech-recognition", model= model, tokenizer = tokenizer,
+#                feature_extractor = model_path)
     
-    output = pipe(filename, chunk_length_s=30)#, stride_length_s=(4, 2))
+#     output = pipe(filename, chunk_length_s=30)#, stride_length_s=(4, 2))
         
-    text = output["text"].lower()    
+#     text = output["text"].lower()    
     
 
 
-    # In[ ]:
+#     # In[ ]:
 
 
-    if file is None:
-        st.text("Please upload a video file")
-    else:
-        with _right:
-             st.header("Converted Text")
-             st.write(text)
+#     if file is None:
+#         st.text("Please upload a video file")
+#     else:
+#         with _right:
+#              st.header("Converted Text")
+#              st.write(text)
 
     st.header("Sample Videos")
     thumbnails = st.container()
