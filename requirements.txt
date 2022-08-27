@@ -5,4 +5,5 @@ Pillow==9.2.0
 scikit_learn==1.1.2
 spacy==3.4.0
 streamlit==1.12.0
+ffmpeg==5.1.0
 transformers==4.21.0
