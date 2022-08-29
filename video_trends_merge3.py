@@ -73,9 +73,9 @@ if file:
 
          model = torch.load(f_checkpoint, map_location=device)
          model.eval()
-         return model, save_dest
+         return model
     
-    model_path = save_dest
+    model_path = model
      
     tokenizer = Wav2Vec2CTCTokenizer.from_pretrained(model_path)
     model = Wav2Vec2ForCTC.from_pretrained(model_path)
