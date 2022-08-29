@@ -58,24 +58,24 @@ if file:
     from transformers import Wav2Vec2ForCTC, Wav2Vec2CTCTokenizer
     #nltk.download('punkt')
     @st.cache
-    def load_model():
+#     def load_model():
 
-         save_dest = Path('model')
-         save_dest.mkdir(exist_ok=True)
+#          save_dest = Path('model')
+#          save_dest.mkdir(exist_ok=True)
 
-         f_checkpoint = Path("model/")
-         cloud_model_location = "https://drive.google.com/drive/folders/1BuC2f8C596ilejZic7pK-0lqvssGJYKh"
+#          f_checkpoint = Path("model/")
+#          cloud_model_location = "https://drive.google.com/drive/folders/1BuC2f8C596ilejZic7pK-0lqvssGJYKh"
 
-         if not f_checkpoint.exists():
-                  with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
-                     from GD_download import download_file_from_google_drive
-                     download_file_from_google_drive(cloud_model_location, f_checkpoint)
+#          if not f_checkpoint.exists():
+#                   with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
+#                      from GD_download import download_file_from_google_drive
+#                      download_file_from_google_drive(cloud_model_location, f_checkpoint)
 
-         model = torch.load(f_checkpoint, map_location=device)
-         model.eval()
-         return model
+#          model = torch.load(f_checkpoint, map_location=device)
+#          model.eval()
+#          return model
     
-    model_path = model
+    model_path = "https://drive.google.com/drive/folders/1BuC2f8C596ilejZic7pK-0lqvssGJYKh"
      
     tokenizer = Wav2Vec2CTCTokenizer.from_pretrained(model_path)
     model = Wav2Vec2ForCTC.from_pretrained(model_path)
