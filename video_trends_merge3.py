@@ -55,7 +55,7 @@ if file:
     #import torch
     #import soundfile as sf
     from transformers import pipeline
-    from transformers import Wav2Vec2ForCTC, Wav2Vec2CTCTokenizer
+    #from transformers import Wav2Vec2ForCTC, Wav2Vec2CTCTokenizer
     #nltk.download('punkt')
     @st.cache
 #     def load_model():
@@ -75,13 +75,13 @@ if file:
 #          model.eval()
 #          return model
     
-    model_path = "https://drive.google.com/drive/folders/1BuC2f8C596ilejZic7pK-0lqvssGJYKh"
+#     model_path = "https://drive.google.com/drive/folders/1BuC2f8C596ilejZic7pK-0lqvssGJYKh"
      
-    tokenizer = Wav2Vec2CTCTokenizer.from_pretrained(model_path)
-    model = Wav2Vec2ForCTC.from_pretrained(model_path)
+#     tokenizer = Wav2Vec2CTCTokenizer.from_pretrained(model_path)
+#     model = Wav2Vec2ForCTC.from_pretrained(model_path)
     
-    pipe = pipeline(task = "automatic-speech-recognition", model= model, tokenizer = tokenizer,
-               feature_extractor = model_path)
+    pipe = pipeline(task = "automatic-speech-recognition", model= "patrickvonplaten/hubert-xlarge-ls960-ft-4-gram")
+               
     
     output = pipe(filename, chunk_length_s=30)#, stride_length_s=(4, 2))
         
@@ -99,142 +99,142 @@ if file:
              st.header("Converted Text")
              st.write(text)
 
-    st.header("Sample Videos")
-    thumbnails = st.container()
-    sample_text = st.container()
-    from PIL import Image
-    with thumbnails:
-         #st.header("Video Thumbnails")
-         t1,t2,t3,t4,t5,t6 = st.columns(6)
-    with t1:
-         h1 = Image.open('./huda_data/eyelift.jpg')
-         h1_n = h1.resize((200, 150))
+#     st.header("Sample Videos")
+#     thumbnails = st.container()
+#     sample_text = st.container()
+#     from PIL import Image
+#     with thumbnails:
+#          #st.header("Video Thumbnails")
+#          t1,t2,t3,t4,t5,t6 = st.columns(6)
+#     with t1:
+#          h1 = Image.open('./huda_data/eyelift.jpg')
+#          h1_n = h1.resize((200, 150))
         
-         st.image(h1_n)#, use_column_width='always', caption='t1')
-    with t2:
-         h2 = Image.open('./huda_data/blush_draping.jpg')
-         h2_n = h2.resize((200, 150))
+#          st.image(h1_n)#, use_column_width='always', caption='t1')
+#     with t2:
+#          h2 = Image.open('./huda_data/blush_draping.jpg')
+#          h2_n = h2.resize((200, 150))
 
-         st.image(h2_n)#, use_column_width='always',caption='t2')
-    with t3:
-         h3 = Image.open('./huda_data/method4.jpg')
-         h3_n = h3.resize((200, 150))
+#          st.image(h2_n)#, use_column_width='always',caption='t2')
+#     with t3:
+#          h3 = Image.open('./huda_data/method4.jpg')
+#          h3_n = h3.resize((200, 150))
 
-         st.image(h3_n)#, use_column_width='always',caption='t3')     
-    with t4:
-         h4 = Image.open('./huda_data/mascara6.jpg')
-         h4_n = h4.resize((200, 150))
+#          st.image(h3_n)#, use_column_width='always',caption='t3')     
+#     with t4:
+#          h4 = Image.open('./huda_data/mascara6.jpg')
+#          h4_n = h4.resize((200, 150))
 
-         st.image(h4_n)#, use_column_width='always',caption='t4') 
-    with t5:
-         h5 = Image.open('./huda_data/concealer9.jpg')
-         h5_n = h5.resize((200, 150))
+#          st.image(h4_n)#, use_column_width='always',caption='t4') 
+#     with t5:
+#          h5 = Image.open('./huda_data/concealer9.jpg')
+#          h5_n = h5.resize((200, 150))
 
-         st.image(h5_n)#, use_column_width='always',caption='t5')
-    with t6:
-         st.write("   ....")
+#          st.image(h5_n)#, use_column_width='always',caption='t5')
+#     with t6:
+#          st.write("   ....")
     
-    with sample_text:
-         #st.header("Sample Text")
-         s1,s2,s3,s4,s5,s6 = st.columns(6)
-    with s1:
-         with open('./huda_data/v1.txt') as f:
-              text = f.read()
-              st.write(text)  
-    with s2:
-         with open('./huda_data/v2.txt') as f:
-              text = f.read()
-              st.write(text)         
-    with s3:
-         with open('./huda_data/v3.txt') as f:
-              text = f.read()
-              st.write(text)
-    with s4:
-         with open('./huda_data/v4.txt') as f:
-              text = f.read()
-              st.write(text)
-    with s5:
-         with open('./huda_data/v5.txt') as f:
-              text = f.read()
-              st.write(text)
-    with s6:
-         st.write("   ....")
-#--------------------------------------------------------------------------------
-    topic_container = st.container()
-    import pickle
-    from bertopic import BERTopic
-    import pandas as pd
-    import re
-    import emoji
+#     with sample_text:
+#          #st.header("Sample Text")
+#          s1,s2,s3,s4,s5,s6 = st.columns(6)
+#     with s1:
+#          with open('./huda_data/v1.txt') as f:
+#               text = f.read()
+#               st.write(text)  
+#     with s2:
+#          with open('./huda_data/v2.txt') as f:
+#               text = f.read()
+#               st.write(text)         
+#     with s3:
+#          with open('./huda_data/v3.txt') as f:
+#               text = f.read()
+#               st.write(text)
+#     with s4:
+#          with open('./huda_data/v4.txt') as f:
+#               text = f.read()
+#               st.write(text)
+#     with s5:
+#          with open('./huda_data/v5.txt') as f:
+#               text = f.read()
+#               st.write(text)
+#     with s6:
+#          st.write("   ....")
+# #--------------------------------------------------------------------------------
+#     topic_container = st.container()
+#     import pickle
+#     from bertopic import BERTopic
+#     import pandas as pd
+#     import re
+#     import emoji
 
-    import spacy
-    nlp_model = spacy.load('en_core_web_md', disable=['parser', 'ner'])
+#     import spacy
+#     nlp_model = spacy.load('en_core_web_md', disable=['parser', 'ner'])
 
-    from sklearn.feature_extraction.text import CountVectorizer
-    #--------------------------------------------------------------------------------
+#     from sklearn.feature_extraction.text import CountVectorizer
+#     #--------------------------------------------------------------------------------
     
-    # Datasets:
-    # data_file_dir = "../../reddit_data/"
-    data_file_dir = "./reddit_data/"
+#     # Datasets:
+#     # data_file_dir = "../../reddit_data/"
+#     data_file_dir = "./reddit_data/"
 
-    data_filename_list_0 = [
-    "prod_reddit_Organic_cleanser.pickle",
-    "prod_reddit_Organic_moisturizer.pickle",
-    "prod_reddit_Organic_serums.pickle",
-    "prod_reddit_Plantbased_cleanser.pickle",
-    "prod_reddit_Plantbased_eyecare.pickle",
-    "prod_reddit_Plantbased_lipcare.pickle",
-    "prod_reddit_Plantbased_moisturizer.pickle",
-    "prod_reddit_Plantbased_serums.pickle",
-    "prod_reddit_Vegan_cleanser.pickle",
-    "prod_reddit_Vegan_foundation.pickle",
-    "prod_reddit_Vegan_moisturizer.pickle",
-    "prod_reddit_Vegan_moisturizers.pickle",
-    "prod_reddit_Vegan_serums.pickle",
-    "prod_reddit_Vegan_toner.pickle",
-    ]
-    data_filename_list = [data_file_dir+data_filename for data_filename in data_filename_list_0]
-    #--------------------------------------------------------------------------------
-    comments_list = []
+#     data_filename_list_0 = [
+#     "prod_reddit_Organic_cleanser.pickle",
+#     "prod_reddit_Organic_moisturizer.pickle",
+#     "prod_reddit_Organic_serums.pickle",
+#     "prod_reddit_Plantbased_cleanser.pickle",
+#     "prod_reddit_Plantbased_eyecare.pickle",
+#     "prod_reddit_Plantbased_lipcare.pickle",
+#     "prod_reddit_Plantbased_moisturizer.pickle",
+#     "prod_reddit_Plantbased_serums.pickle",
+#     "prod_reddit_Vegan_cleanser.pickle",
+#     "prod_reddit_Vegan_foundation.pickle",
+#     "prod_reddit_Vegan_moisturizer.pickle",
+#     "prod_reddit_Vegan_moisturizers.pickle",
+#     "prod_reddit_Vegan_serums.pickle",
+#     "prod_reddit_Vegan_toner.pickle",
+#     ]
+#     data_filename_list = [data_file_dir+data_filename for data_filename in data_filename_list_0]
+#     #--------------------------------------------------------------------------------
+#     comments_list = []
 
-    for ff, filename in enumerate(data_filename_list):
-        #print(filename)
-        #print("---")
-        with open(filename, 'rb') as handle: data_dict = pickle.load(handle)
-        for comment_idx in range(1, 101):
-            comment = " ".join([data_dict[comment_idx][key] for key in ["title", "coments_body"]]) #Note: comment=title+comment_body
-            comments_list.append(comment)
+#     for ff, filename in enumerate(data_filename_list):
+#         #print(filename)
+#         #print("---")
+#         with open(filename, 'rb') as handle: data_dict = pickle.load(handle)
+#         for comment_idx in range(1, 101):
+#             comment = " ".join([data_dict[comment_idx][key] for key in ["title", "coments_body"]]) #Note: comment=title+comment_body
+#             comments_list.append(comment)
 
-    df = pd.DataFrame({'comment': comments_list})
-    comments_list = df['comment'].unique().tolist()
-    #--------------------------------------------------------------------------------
-    # Remove urls:
-    commentsList_URL = []
-    for text in comments_list:
-        #print("http" in text)
-        new_text = re.sub(r"http\S+", "", text)
-        commentsList_URL.append(new_text)
+#     df = pd.DataFrame({'comment': comments_list})
+#     comments_list = df['comment'].unique().tolist()
+#     #--------------------------------------------------------------------------------
+#     # Remove urls:
+#     commentsList_URL = []
+#     for text in comments_list:
+#         #print("http" in text)
+#         new_text = re.sub(r"http\S+", "", text)
+#         commentsList_URL.append(new_text)
 
-    # Remove graphic emojis:
-    emoji_dict = emoji.UNICODE_EMOJI["en"]
+#     # Remove graphic emojis:
+#     emoji_dict = emoji.UNICODE_EMOJI["en"]
 
-    commentsList_URLEmoji = []
-    for text in commentsList_URL:
-        tokenized_list = [token.lemma_ for token in nlp_model(text)] #check if lemmatizing here doesn anything at all, bcoz I've lemmatized before as well.
-        new_text = " ".join([tok for tok in tokenized_list if tok not in emoji_dict])
-        commentsList_URLEmoji.append(new_text)
+#     commentsList_URLEmoji = []
+#     for text in commentsList_URL:
+#         tokenized_list = [token.lemma_ for token in nlp_model(text)] #check if lemmatizing here doesn anything at all, bcoz I've lemmatized before as well.
+#         new_text = " ".join([tok for tok in tokenized_list if tok not in emoji_dict])
+#         commentsList_URLEmoji.append(new_text)
     
-    topic_model = BERTopic.load("topic_model")
-    #fig = topic_model.visualize_barchart(top_n_topics=10, n_words=10, height=400)
-    #--------------------------------------------------------------------------------
+#     topic_model = BERTopic.load("topic_model")
+#     #fig = topic_model.visualize_barchart(top_n_topics=10, n_words=10, height=400)
+#     #--------------------------------------------------------------------------------
     
 
-    with topic_container:
-         fig_barchart = topic_model.visualize_barchart(top_n_topics=10, n_words=10, height=400)
-         st.plotly_chart(fig_barchart)
+#     with topic_container:
+#          fig_barchart = topic_model.visualize_barchart(top_n_topics=10, n_words=10, height=400)
+#          st.plotly_chart(fig_barchart)
 
-         fig_intertopic_dist = topic_model.visualize_topics()
-         st.plotly_chart(fig_intertopic_dist)
+#          fig_intertopic_dist = topic_model.visualize_topics()
+#          st.plotly_chart(fig_intertopic_dist)
 
-         fig_viz_docs = topic_model.visualize_documents(commentsList_URLEmoji)
-         st.plotly_chart(fig_viz_docs)
+#          fig_viz_docs = topic_model.visualize_documents(commentsList_URLEmoji)
+#          st.plotly_chart(fig_viz_docs)
